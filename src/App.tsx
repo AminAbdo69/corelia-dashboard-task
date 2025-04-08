@@ -1,10 +1,10 @@
-import CoreliaLogo from "./assets/images/corelia-logo.png";
+import { Sidebar } from "./components/Sidebar";
 
 const App = () => {
   return (
-    <p>
-      <img src={CoreliaLogo} alt="" />
-    </p>
+    <div className="min-h-screen bg-gray-100">
+      <Sidebar className="w-58 h-screen bg-white  shadow-sm " />
+    </div>
   );
 };
 
