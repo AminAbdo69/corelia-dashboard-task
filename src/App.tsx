@@ -1,5 +1,11 @@
+import CoreliaLogo from "./assets/images/corelia-logo.png";
+
 const App = () => {
-  return <div className="text-sky-500">App</div>;
+  return (
+    <p>
+      <img src={CoreliaLogo} alt="" />
+    </p>
+  );
 };
 
 export default App;
