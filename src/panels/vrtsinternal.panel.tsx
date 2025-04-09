@@ -1,10 +1,9 @@
-import { PagePath } from "../components/page-path";
+import { DefaultPanel } from "./default-panel";
 
 export const VRTSInternalPanel = () => {
   return (
     <div className="p-4">
-      <PagePath root="/" rootName="Home" panel="vrts-internal" />
-      VRTSInternal Panel
+      <DefaultPanel id="vrts-internal" title="VRTSInternal Panel" />
     </div>
   );
 };

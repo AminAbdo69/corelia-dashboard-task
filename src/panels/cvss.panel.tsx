@@ -1,10 +1,9 @@
-import { PagePath } from "../components/page-path";
+import { DefaultPanel } from "./default-panel";
 
 export const CVSSPanel = () => {
   return (
     <div className="p-4">
-      <PagePath root="/" rootName="Home" panel="cvss" />
-      CVSS Panel
+      <DefaultPanel id="cvss" title="CVSS Panel" />
     </div>
   );
 };

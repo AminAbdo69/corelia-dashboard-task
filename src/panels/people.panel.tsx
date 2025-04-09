@@ -1,10 +1,9 @@
-import { PagePath } from "../components/page-path";
+import { DefaultPanel } from "./default-panel";
 
 export const PeoplePanel = () => {
   return (
     <div className="p-4">
-      <PagePath root="/" rootName="Home" panel="people" />
-      People Panel
+      <DefaultPanel id="people" title="People Panel" />
     </div>
   );
 };
