@@ -5,3 +5,4 @@ export { Warning } from "./warning.icon";
 export { Question } from "./question.icon";
 export { CVSS } from "./cvss.icon";
 export { Search } from "./search.icon";
+export { Download } from "./download.icon";

@@ -4,7 +4,7 @@ import { PanelId } from "./utils/panel-ids";
 import {
   ClientsPanel,
   PeoplePanel,
-  ProjectPanel,
+  ProjectsPanel,
   VRTSGlobalPanel,
   VRTSInternalPanel,
   QuestionsPanel,
@@ -20,7 +20,7 @@ const App = () => {
       case "clients":
         return <ClientsPanel />;
       case "projects":
-        return <ProjectPanel />;
+        return <ProjectsPanel />;
       case "people":
         return <PeoplePanel />;
       case "vrts-global":
