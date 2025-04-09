@@ -4,3 +4,4 @@ export { Project } from "./project.icon";
 export { Warning } from "./warning.icon";
 export { Question } from "./question.icon";
 export { CVSS } from "./cvss.icon";
+export { Search } from "./search.icon";

@@ -6,7 +6,7 @@ import NavButton from "./nav-button.component";
 interface SidebarProps {
   className?: string;
 }
-
+const iconClass = "w-4 h-4";
 export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
   return (
     <div className={className}>
@@ -15,20 +15,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
       </div>
       <nav className=" grid p-4 space-y-2 text-gray-700">
         <NavButton>
-          <User /> Clients
+          <User className={iconClass} /> Clients
         </NavButton>
         <NavButton>
-          <Project /> Projects
+          <Project className={iconClass} /> Projects
         </NavButton>
         <NavButton>
-          <User /> People
+          <User className={iconClass} /> People
         </NavButton>
         <CollapsibleOption />
         <NavButton>
-          <Question /> Questions
+          <Question className={iconClass} /> Questions
         </NavButton>
         <NavButton>
-          <CVSS /> CVSS
+          <CVSS className={iconClass} /> CVSS
         </NavButton>
       </nav>
     </div>

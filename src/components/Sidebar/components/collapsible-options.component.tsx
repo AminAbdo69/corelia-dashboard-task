@@ -13,7 +13,7 @@ const CollapsibleOption = () => {
         onClick={() => setOpened(!opened)}
       >
         <span className="flex items-center gap-2">
-          <Warning /> Vrts
+          <Warning className="w-4 h-4" /> Vrts
         </span>
         <span>
           <Arrow className={opened ? " rotate-180 " : ""} />
