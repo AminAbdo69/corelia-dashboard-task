@@ -16,6 +16,7 @@ const CollapsibleOption: React.FC<CollapsibleOptionProps> = ({
   return (
     <div className="grid">
       <NavButton
+        isActive={false}
         className="flex justify-between"
         onClick={() => setOpened(!opened)}
       >
