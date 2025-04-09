@@ -1,44 +1,16 @@
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import { PanelId } from "./utils/panel-ids";
-import {
-  ClientsPanel,
-  PeoplePanel,
-  ProjectsPanel,
-  VRTSGlobalPanel,
-  VRTSInternalPanel,
-  QuestionsPanel,
-  CVSSPanel,
-} from "./panels";
+import { panels } from "./panels";
 import { useState } from "react";
 
 const App = () => {
   const [selectedPanel, setSelectedPanel] = useState<PanelId>("clients");
 
-  const renderPanel = () => {
-    switch (selectedPanel) {
-      case "clients":
-        return <ClientsPanel />;
-      case "projects":
-        return <ProjectsPanel />;
-      case "people":
-        return <PeoplePanel />;
-      case "vrts-global":
-        return <VRTSGlobalPanel />;
-      case "vrts-internal":
-        return <VRTSInternalPanel />;
-      case "questions":
-        return <QuestionsPanel />;
-      case "cvss":
-        return <CVSSPanel />;
-      default:
-        return <div className="p-4">Home panel</div>;
-    }
-  };
-
   return (
     <div className="min-h-screen flex bg-gray-100">
       <Sidebar
+        selectedPanel={selectedPanel}
         onSelectPanel={setSelectedPanel}
         className="w-50 h-screen bg-white  shadow-sm"
       />
@@ -47,7 +19,7 @@ const App = () => {
         <Header />
 
         <main className="flex-1 bg-gray-50 overflow-y-auto">
-          {renderPanel()}
+          {panels[selectedPanel]}
         </main>
       </div>
     </div>

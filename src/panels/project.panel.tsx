@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import { projectsData } from "../utils/projects-data.ts";
 import { Button } from "../components/ui/button";
 import { Download, Search } from "../assets/icons";
+import { PagePath } from "../components/page-path/index.ts";
 
 export const ProjectsPanel = () => {
   const [selectedTab, setSelectedTab] = useState<"active" | "archived">(
     "active"
   );
+  const [projects, setProjects] = useState(projectsData);
 
-  const filteredProjects = projectsData.filter(
-    (project) => project.status === selectedTab
+  const filteredProjects = useMemo(
+    () => projects.filter((project) => project.status === selectedTab),
+    [projects, selectedTab]
   );
 
+  const handleChangeProjectState = (projectId: number) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((project) =>
+        project.id === projectId
+          ? {
+              ...project,
+              status: selectedTab === "active" ? "archived" : "active",
+            }
+          : project
+      )
+    );
+  };
+
   return (
-    <div className="p-6 space-y-4 ">
+    <div className="p-4 space-y-4 ">
+      <PagePath root="/" rootName="Home" panel="projects" />
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">Projects</h2>
         <div className="w-60 bg-white relative ">
@@ -27,15 +44,17 @@ export const ProjectsPanel = () => {
       </div>
 
       <div className="flex justify-between items-center ">
-        <div className="flex gap-2">
+        <div className="flex overflow-hidden rounded-lg border border-gray-200">
           <Button
             isActive={selectedTab === "active"}
+            className="rounded-none border-none"
             onClick={() => setSelectedTab("active")}
           >
             Active
           </Button>
           <Button
             isActive={selectedTab === "archived"}
+            className="rounded-none border-none"
             onClick={() => setSelectedTab("archived")}
           >
             Archive
@@ -48,13 +67,13 @@ export const ProjectsPanel = () => {
         <table className="table-auto min-w-full ">
           <thead className="bg-gray-200/10 ">
             <tr>
-              <th className=" py-3 text-center text-base font-medium text-gray-500 ">
+              <th className="w-60 mx-auto py-3 text-center text-base font-medium text-gray-500 ">
                 Title
               </th>
-              <th className=" py-3 text-center text-base font-medium text-gray-500">
+              <th className="w-60 py-3 text-center text-base font-medium text-gray-500">
                 Client
               </th>
-              <th className=" py-3 text-center text-base font-medium text-gray-500">
+              <th className="py-3 text-end pr-36 text-base font-medium text-gray-500">
                 Action
               </th>
             </tr>
@@ -62,13 +81,13 @@ export const ProjectsPanel = () => {
           <tbody>
             {filteredProjects.map((project) => (
               <tr key={project.id} className="border-t border-gray-500/15">
-                <td className="py-3 text-center text-sm  text-gray-500">
+                <td className="w-60 py-3 text-center text-sm  text-gray-500">
                   {project.title}
                 </td>
-                <td className="py-5 text-center text-sm   text-gray-500">
+                <td className="w-60 py-5 text-center text-sm   text-gray-500">
                   {project.client}
                 </td>
-                <td className="py-3 pr-2 flex justify-center items-center gap-3 text-center text-sm   text-gray-500 ">
+                <td className="py-3 pr-2 flex justify-end items-center gap-3 text-center text-sm   text-gray-500 ">
                   <Button isActive={false} className="text-sm">
                     Details
                   </Button>
@@ -77,8 +96,12 @@ export const ProjectsPanel = () => {
                       <Download className="w-5 h-5" /> Download
                     </div>
                   </Button>
-                  <Button isActive={false} className="text-sm">
-                    Archive
+                  <Button
+                    isActive={false}
+                    className="text-sm"
+                    onClick={() => handleChangeProjectState(project.id)}
+                  >
+                    {selectedTab === "active" ? "Archive" : "Unarchive"}
                   </Button>
                 </td>
               </tr>

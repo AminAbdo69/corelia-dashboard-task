@@ -6,12 +6,14 @@ import { PanelId } from "../../../utils/panel-ids";
 
 interface SidebarProps {
   className?: string;
+  selectedPanel: PanelId;
   onSelectPanel: (panelId: PanelId) => void;
 }
 
 const iconClass = "w-4 h-4";
 export const Sidebar: React.FC<SidebarProps> = ({
   className,
+  selectedPanel,
   onSelectPanel,
 }) => {
   return (
@@ -20,20 +22,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <img src={CoreliaLogo} alt="Corelia Logo" />
       </div>
       <nav className="grid p-4 space-y-2 text-gray-700">
-        <NavButton onClick={() => onSelectPanel("clients")}>
+        <NavButton
+          isActive={selectedPanel == "clients"}
+          onClick={() => onSelectPanel("clients")}
+        >
           <User className={iconClass} /> Clients
         </NavButton>
-        <NavButton onClick={() => onSelectPanel("projects")}>
+        <NavButton
+          isActive={selectedPanel == "projects"}
+          onClick={() => onSelectPanel("projects")}
+        >
           <Project className={iconClass} /> Projects
         </NavButton>
-        <NavButton onClick={() => onSelectPanel("people")}>
+        <NavButton
+          isActive={selectedPanel == "people"}
+          onClick={() => onSelectPanel("people")}
+        >
           <User className={iconClass} /> People
         </NavButton>
         <CollapsibleOption onSelectPanel={onSelectPanel} />
-        <NavButton onClick={() => onSelectPanel("questions")}>
+        <NavButton
+          isActive={selectedPanel == "questions"}
+          onClick={() => onSelectPanel("questions")}
+        >
           <Question className={iconClass} /> Questions
         </NavButton>
-        <NavButton onClick={() => onSelectPanel("cvss")}>
+        <NavButton
+          isActive={selectedPanel == "cvss"}
+          onClick={() => onSelectPanel("cvss")}
+        >
           <CVSS className={iconClass} /> CVSS
         </NavButton>
       </nav>
