@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
-import { projectsData } from "../utils/projects-data.ts";
 import { Button } from "../components/ui/button";
 import { Download, Search } from "../assets/icons";
 import { PagePath } from "../components/page-path/index.ts";
+import { useFetchProjects } from "../hooks/use-fetch-projects.hook.tsx";
 
 export const ProjectsPanel = () => {
   const [selectedTab, setSelectedTab] = useState<"active" | "archived">(
     "active"
   );
-  const [projects, setProjects] = useState(projectsData);
+  const { projects, setProjects } = useFetchProjects();
 
   const filteredProjects = useMemo(
     () => projects.filter((project) => project.status === selectedTab),
