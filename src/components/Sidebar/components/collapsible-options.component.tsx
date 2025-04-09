@@ -2,8 +2,15 @@ import { useState } from "react";
 import { Warning } from "../../../assets/icons";
 import { Arrow } from "../../../assets/icons/arrow.icon";
 import NavButton from "./nav-button.component";
+import { PanelId } from "../../../utils/panel-ids";
 
-const CollapsibleOption = () => {
+interface CollapsibleOptionProps {
+  onSelectPanel: (panelId: PanelId) => void;
+}
+
+const CollapsibleOption: React.FC<CollapsibleOptionProps> = ({
+  onSelectPanel,
+}) => {
   const [opened, setOpened] = useState(false);
 
   return (
@@ -20,11 +27,11 @@ const CollapsibleOption = () => {
         </span>
       </NavButton>
       <div
-        className="grid gap-4 bg-gray-100 p-4 pl-10 rounded-xl mt-2"
+        className="grid gap-5 bg-gray-100 p-4 pl-1 rounded-xl mt-2"
         hidden={!opened}
       >
-        <div>Global</div>
-        <div>Internal</div>
+        <button onClick={() => onSelectPanel("vrts-global")}>Global</button>
+        <button onClick={() => onSelectPanel("vrts-internal")}>Internal</button>
       </div>
     </div>
   );
